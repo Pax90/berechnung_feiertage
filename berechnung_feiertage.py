@@ -9,8 +9,8 @@
 #																				#
 # Autor: Stephan John															#
 # Maintainer: David Stöber														#
-# Version: 1.1																	#
-# Datum: 25.05.2012																#
+# Version: 1.2																	#
+# Datum: 07.10.2019																#
 #																				#
 # Danke an Paul Wachendorf für die Hinweise										#
 #-------------------------------------------------------------------------------#
@@ -50,9 +50,9 @@ def holidays(year, state=None):
 		year = int(year)
 		if year < 1970:
 			year = 1970
-			print u'Jahreszahl wurde auf 1970 geändert'
+			print(u'Jahreszahl wurde auf 1970 geändert')
 	except ValueError:
-		print u'Fehlerhafte Angabe der Jahreszahl'
+		print(u'Fehlerhafte Angabe der Jahreszahl')
 		return
 	if state:
 		if state in state_codes.keys():
@@ -65,11 +65,11 @@ def holidays(year, state=None):
 	else:
 		state_code = None
 	if not state_code:
-		print u'Es werden nur die deutschlandweit gültigen Feiertage ausgegeben'
+		print(u'Es werden nur die deutschlandweit gültigen Feiertage ausgegeben')
 	hl = Holidays(year, state_code)
 	holidays = hl.get_holiday_list()
 	for h in holidays:
-		print h[1],  h[0]
+		print(h[1],  h[0])
 
 class Holidays:
 
@@ -349,16 +349,16 @@ class EasterDay:
 		else:
 			month = 3
 			day = os
-		easter_day = datetime.date(self.year, month, day)
+		easter_day = datetime.date(self.year, int(month), int(day))
 		return easter_day
 
 if __name__ == '__main__':
-	y = raw_input('Bitte geben Sie die Jahreszahl ein: ')
-	print u'Für die Eingabe eines Bundeslandes folgende Abkürzungen verwenden:'
-	print u'< leer > um kein Bundesland auszuwählen'
+	y = input('Bitte geben Sie die Jahreszahl ein: ')
+	print(u'Für die Eingabe eines Bundeslandes folgende Abkürzungen verwenden:')
+	print(u'< leer > um kein Bundesland auszuwählen')
 	states = state_codes.keys()
-	states.sort()
+	states = sorted(states)
 	for l in states:
-		print '%s für %s'%(state_codes[l], l)
-	s = raw_input('Bitte geben Sie das gewünschte Bundesland ein: ')
+		print('%s für %s'%(state_codes[l], l))
+	s = input('Bitte geben Sie das gewünschte Bundesland ein: ')
 	holidays(y, s)
