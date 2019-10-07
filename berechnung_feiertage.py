@@ -9,7 +9,7 @@
 #																				#
 # Autor: Stephan John															#
 # Maintainer: David Stöber														#
-# Version: 1.2																	#
+# Version: 1.3																	#
 # Datum: 07.10.2019																#
 #																				#
 # Danke an Paul Wachendorf für die Hinweise										#
@@ -102,6 +102,8 @@ class Holidays:
 			self.get_all_saints_day(state_code)
 			self.get_repentance_and_prayer_day(state_code)
 			self.get_corpus_christi(state_code)
+			self.get_international_womens_day(state_code)
+			self.get_world_childrens_day(state_code)
 
 	def get_holiday_list(self):
 
@@ -206,6 +208,20 @@ class Holidays:
 		if state_code in valid:
 			corpus_christi = self.get_holiday(60)
 			self.holiday_list.append([corpus_christi, u'Fronleichnam'])
+
+	def get_international_womens_day(self, state_code):
+		""" Internationaler Frauentag """
+		valid = ['BE']
+		if self.year >= 2019 and state_code in valid:
+			international_womens_day = datetime.date(self.year, 3, 8)
+			self.holiday_list.append([international_womens_day, u'Internationaler Frauentag'])
+
+	def get_world_childrens_day(self, state_code):
+		""" Weltkindertag """
+		valid = ['TH']
+		if self.year >= 2019 and state_code in valid:
+			world_childrens_day = datetime.date(self.year, 9, 20)
+			self.holiday_list.append([world_childrens_day, u'Weltkindertag'])
 
 
 
